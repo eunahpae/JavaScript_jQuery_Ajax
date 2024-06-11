@@ -1,33 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=\, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <style>
         .wrap,
         .wrap * {
-            border: 1px solid lightgray;
-            display: block;
-            padding: 5px;
-            margin: 15px;
-            color: gray;
+            border : 1px solid lightgray;
+            display : block;
+            padding : 5px;
+            margin : 15px;
+            color : gray;
         }
-
-        .type {
-            width: 500px;
-        }
+        .type { width : 500px; }
     </style>
 </head>
-
 <body>
     <h1>필터링 메소드</h1>
     <p>
         선택자로 지정한 객체를 기준으로 객체 그룹에서의 위치를 통해
-        객체를 선택하는 메서드
+        객체를 선택하는 메서드 
     </p>
 
     <h4 class="test">test-1</h4>
@@ -38,34 +32,32 @@
     <h4 class="test">test-6</h4>
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function(){
             console.log($(".test"));
 
             // filter : 특정 기준과 일치하는 요소를 반환
             // test 클래스 요소 중 짝수 인덱스(0, 2, 4) 반환
-            console.log($(".test").filter(":even"))
-            $(".test").filter(":even").css({ background: "tomato", color: "white" });
+            console.log($(".test").filter(":even"));
+            $(".test").filter(":even").css({ background:"tomato", color:"white" });
 
             // 함수를 매개변수로 하는 filter 메서드
-            $(".test").filter(function (index) {
+            $(".test").filter(function(index){
                 return index % 2 == 1;
-            }).css({ background: "yellow", color: "red" });
-
+            }).css({ background:"yellow", color:"red" });
+            
             // 선택 된 요소 중 제일 처음에 있는 요소
             $("h4").first().css("font-size", "1.5rem");
-
+            
             // 선택 된 요소 중 제일 마지막에 있는 요소
             // text 메서드 : 텍스트 노드를 가져오거나 변경
             console.log($("h4").last().text());
             $("h4").last().text($("h4").last().text() + " : 마지막 요소");
-
+            
             // 인덱스 번호와 일치하는 요소
             $("h4").eq(3).text("eq(3)으로 필터링");
-
-
+            
             // 인자 값과 일치하지 않는 요소만 리턴
-            $("h4").not(".test").css({ background: "pink", color: "white" });
-
+            $("h4").not(".test").css({ background:"pink", color:"white" });
         });
     </script>
 
@@ -90,25 +82,23 @@
     </div>
 
     <script>
-        $(function () {
+        $(function(){
             // parent() : 바로 위 상위 요소를 선택하는 메소드
-            $(".test1 span").parent().css({ color: 'red', border: '2px solid red' });
-
+            $(".test1 span").parent().css({ color:'red', border:'2px solid red'});
+            
             // parents() : 모든 상위 요소를 선택하는 메소드
-                // $(".test1 li").parents().css("color", "blue");
             // 단, 매개변수가 있으면 매개변수와 일치하는 부모만 리턴
+            // $(".test1 li").parents().css("color", "blue");
             $(".test1 li").parents("div").css("color", "blue");
-
-            // parentsUntil() : 매개변수 요소 전까지의 범위의 요소 선택
-            $(".test1 span").parentsUntil("div").css("background","lightgreen");
-
-
+            
+            // parentsUntil() : 매개변수 요소까지의 범위의 요소 선택
+            $(".test1 span").parentsUntil("div").css("background", "lightgreen");
         });
     </script>
 
     <h3>
-        descendants(자손, 후손) 메소드 :
-        선택 된 요소의 하위 요소들을 선택할 수 있는 메소드
+        descendants(자손, 후손) 메소드 : 
+        선택 된 요소의 하위 요소들을 선택할 수 있는 메소드 
     </h3>
 
     <div class="wrap test2">
@@ -127,13 +117,13 @@
     </div>
 
     <script>
-        const style1 = { color: 'red', border: '2px solid red' };
-        const style2 = { color: 'blue', border: '2px solid blue' };
-        const style3 = { color: 'green', border: '2px solid green' };
-        const style4 = { color: 'orange', border: '2px solid orange' };
-        const style5 = { color: 'purple', border: '2px solid purple' };
+        const style1 = { color : 'red', border : '2px solid red'};
+        const style2 = { color : 'blue', border : '2px solid blue'};
+        const style3 = { color : 'green', border : '2px solid green'};
+        const style4 = { color : 'orange', border : '2px solid orange'};
+        const style5 = { color : 'purple', border : '2px solid purple'};
 
-        $(function () {
+        $(function(){
             // children() : 모든 자식 객체 선택하는 메소드
             // 매개변수가 있으면 매개변수와 일치하는 자식만 선택
             $(".test2").children().css(style1);
@@ -143,13 +133,12 @@
             // find() : 매개변수와 일치하는 모든 후손 선택
             $(".test2").find("li").css(style4);
             $(".test2").find("span").css(style5);
-
         });
     </script>
 
     <h3>
         sideways 메소드 :
-        같은 레벨에 있는 요소를 선택할 수 있는 메소드
+        같은 레벨에 있는 요소를 선택할 수 있는 메소드 
     </h3>
 
     <div class="wrap">div (parent)
@@ -161,7 +150,7 @@
     </div>
 
     <script>
-        $(function () {
+        $(function(){
             // siblings() : 같은 레벨에 있는 모든 요소 선택
             // 매개변수가 있으면 매개변수와 일치하는 같은 레벨의 모든 요소 선택
             $(".wrap h2").siblings().css(style1);
@@ -169,21 +158,19 @@
             
             // next() : 같은 레벨의 다음 형제 요소 선택
             // nextAll() : 같은 레벨의 다음 형제 요소들 선택
-            // nextUntil() : 매개변수 다음 형제 요소들 선택
+            // nextUntil() : 매개변수까지의 다음 형제 요소들 선택
             $(".wrap h2").next().css(style3);
             $(".wrap h2").nextAll().css(style4);
             $(".wrap h2").nextUntil("p").css(style5);
             
             // prev() : 같은 레벨의 이전 형제 요소 선택
             // prevAll() : 같은 레벨의 이전 형제 요소들 선택
-            // prevUntil() : 매개변수 이전 형제 요소들 선택
+            // prevUntil() : 매개변수까지의 이전 형제 요소들 선택
             $(".wrap h2").prev().css(style5);
             $(".wrap h2").prevAll().css(style4);
-            $(".wrap h2").prevUntil("p").css(style2);
-
+            $(".wrap h2").prevUntil("p").css(style3);
         });
     </script>
-
+    
 </body>
-
 </html>

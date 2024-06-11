@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
     <h1>이벤트</h1>
@@ -20,9 +21,24 @@
 
     <script>
         // on 메소드의 기본적인 사용법
+        $("#test1").on('click', function(){
+            console.log(event.target);
+            console.log($(this).text());
+        });
 
         // 여러 개의 이벤트를 객체로 전달하여 등록할 수도 있다. 
-
+        $("#test1").on({
+            mouseenter: function(){
+                $(this).css("background", "yellowgreen").text('마우스 올라감');
+            },
+            mouseleave: function(){
+                $(this).css("background", "green").text("마우스 내려감");
+            },
+            click: function(){
+                $(this).off('mouseenter').off('mouseleave')
+                .css('background', 'red').text('이벤트 제거됨');
+            }
+        });
     </script>
 
     <h3>$('selector').on(events, selector, handler)</h3>
@@ -36,11 +52,15 @@
     </div>
 
     <script>
-        // 해당 코드가 수행 될 때 문서에 존재하는 h2 요소에게만 
-        // 이벤트가 연결 된다.
+        function add() {
+            $("#wrap").append('<h2>클릭으로 인해 추가된 요소</h2>');
+        }
+
+        // 해당 코드가 수행 될 때 문서에 존재하는 h2 요소에게만 이벤트가 연결 된다.
+        // $("h2").on('click', add);
         
         // 문서 내에 동적으로 추가 된 h2 요소에게도 이벤트가 연결 됨
-        
+        $(document).on('click', 'h2', add);
     </script>
 
     <h3>one 메소드</h3>
@@ -49,9 +69,9 @@
     </p>
     <h1 id="test2">클릭하세요</h1>
     <script>
-
-        
-
+        $("#test2").one('click', function(){
+            alert('처음이자 마지막 이벤트 발생!!!!!');
+        });
     </script>
 
     <h3>trigger 메소드</h3>
@@ -66,7 +86,15 @@
     <div class="increment" id="increment">click me!</div>
     <script>
         $(function(){
+            let cnt = 1;
+            $("#trg").on('click', function(){
+                $("#cnt").text(cnt++);
+            });
 
+            $("#increment").on('click', function(){
+                // #trg 요소의 click 이벤트 핸들러 요청
+                $("#trg").trigger('click');
+            });
         });
     </script>
 
@@ -82,9 +110,13 @@
     <button id="btnTrg">trigger를 통한 a 태그 클릭</button>
 
     <script>
-
+        function justClicked(){
+            console.log('Just Clicked !!!!!!!!!!');
+        }
         
-        
+        $("#btnTrg").on('click', function(){
+            $("#goNaver").trigger('click');
+        })
     </script>
 
 </body>

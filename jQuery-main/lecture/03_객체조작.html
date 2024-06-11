@@ -42,6 +42,7 @@
         .highlight_3 { background : green; }
         .highlight_4 { background : blue; }
     </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
     <h1>content 관련 메소드</h1>
@@ -56,9 +57,11 @@
 
     <script>
         $(function(){
+            const tmp = $("#test1").html();
+            console.log(tmp);
 
-
-
+            $("#test2").html(tmp);
+            $("#test2").children("a").attr("href", "https://www.naver.com");
         });
     </script>
 
@@ -71,7 +74,7 @@
             $(".testClass1").html(function(index, html){
                 // html 메소드의 콜백 함수에는 선택 된 요소 목록의 현재 요소 인덱스, 이전 컨텐츠 값이라는 두 값이 전달된다.
                 // 설정하고자 하는 값을 문자열로 리턴한다.
-                
+                return `<h1>이전 값: ${ html }, index: ${ index }</h1>`;
             });
         });
     </script>
@@ -104,7 +107,7 @@
             $(".testClass2").text(function(index, text){
                 // text 메소드의 콜백 함수에는 선택 된 요소 목록의 현재 요소 인덱스, 이전 컨텐츠 값이라는 두 값이 전달된다.
                 // 설정하고자 하는 값을 문자열로 리턴한다.
-
+                return `<h1>이전 값: ${ text }, index: ${ index }</h1>`;
             });
         });
     </script>
@@ -123,6 +126,15 @@
             const arr = ['B', 'C', 'D', 'E'];
             let index = 0;
 
+            const timer = setInterval(function(){
+                let html = `<span>${ arr[index++] }</span>`;
+                $("#add1").append(html);
+                $("#add2").prepend(html);
+                $("#add3").after(html);
+                $("#add4").before(html);
+                if(index > 3) clearInterval(timer);
+            }, 1000)
+
         });
     </script>
 
@@ -138,6 +150,18 @@
         $(function(){
             const arr = ['B', 'C', 'D', 'E'];
             let index = 0;
+
+            const timer = setInterval(function(){
+                $($("<span>").text(arr[index])).appendTo("#add5");
+                $($("<span>").text(arr[index])).prependTo("#add6");
+                $($("<span>").text(arr[index])).insertAfter("#add7");
+                $($("<span>").text(arr[index])).insertBefore("#add8");
+
+                index++;
+
+                if(index > 3) clearInterval(timer);
+
+            }, 1000);
 
         });
     </script>
@@ -155,9 +179,19 @@
 
     <script>
         // 마우스 오버 이벤트 추가
+        $("#item1").hover(function(){
+            // 마우스가 올라갔을 때
+            $(this).addClass("lime");
+        }, function(){
+            // 마우스가 내려갔을 때
+            $(this).removeClass("lime");
+        });
         
         // 버튼 클릭 이벤트 추가
-
+        $("#clone").click(function(){
+            // $("#item1").clone().appendTo("#clone-test");
+            $("#item1").clone(true).appendTo("#clone-test");
+        });
     </script>
 
     <h3>객체 제거 메소드</h3>
@@ -177,9 +211,25 @@
     <div id="result" class="box"></div>
 
     <script>
+        $("#item2").hover(function(){
+            $(this).addClass("lime");
+        }, function(){
+            $(this).removeClass("lime");
+        });
 
+        $("#empty").click(function(){
+            $("#remove-test").empty();
+        });
 
+        $("#remove").click(function(){
+            const elem = $("#item2").remove();
+            $("#result").html(elem);
+        });
 
+        $("#detach").click(function(){
+            const elem = $("#item2").detach();
+            $("#result").html(elem);
+        });
     </script>
 
     <h1>메소드</h1>
@@ -195,9 +245,18 @@
     <div id="area1"></div>    
     <script>
         $(function(){
+            const arr = [
+                { name: '네이버', link: 'https://www.naver.com'},
+                { name: '구글', link: 'https://www.google.com'},
+                { name: 'w3school', link: 'https://www.w3schools.com'}
+            ];
 
+            let html = '';
+            $.each(arr, function(index, item){
+                html += `<h2><a href='${ item.link }'>${ item.name }</a></h2>`;
+            });
 
-
+            $("#area1").html(html);
         });
     </script>
 
@@ -211,9 +270,9 @@
 
     <script>
         $(function(){
-
-            
-
+            $("#wrap").children().each(function(index, item){
+                $(this).addClass("highlight_" + index);
+            });
         });
     </script>
 
@@ -233,9 +292,11 @@
 
     <script>
         $(function(){
-
-            
-
+            $("h3").each(function(){
+                if($(this).is(".test")) {
+                    $(this).css("background", "yellow");
+                }
+            });
         });
     </script>
 
@@ -251,9 +312,13 @@
     <h1 id="ncTest">noConflict 테스트</h1>
 
     <script>
-        
+        // 아래 코드를 사용하면 해당 페이지에서 더 이상 '$'를 사용할 수 없고
+        // jq로 대체하여 사용해야 한다.
+        // let jq = $.noConflict();
 
-
+        jq(function(){
+            jq('#ncTest').css("color", "red");
+        })
     </script>
     
 </body>

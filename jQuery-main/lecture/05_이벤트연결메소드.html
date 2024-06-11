@@ -18,6 +18,7 @@
             background-color: red;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
     <h1>이벤트 연결 메소드</h1>
@@ -39,9 +40,18 @@
     <script>
         $(function(){
             // 자식 요소 접근 시에는 이벤트 핸들링 하지 않음
+            $(".o1").mouseenter(function(){
+                $("#output1").text($("#output1").text() + "ENTER!!!!! ");
+            }).mouseleave(function(){
+                $("#output1").text($("#output1").text() + "LEAVE!!!!! ");
+            });
 
             // 자식 요소 접근 시에도 이벤트 핸들링 함
-
+            $(".o2").mouseover(function(){
+                $("#output2").text($("#output2").text() + "OVER!!!!! ");
+            }).mouseout(function(){
+                $("#output2").text($("#output2").text() + "OUT!!!!! ");
+            });
         });
     </script>
 
@@ -53,7 +63,13 @@
     <input type="text" id="inputText">
     <script>
         $(function(){
-
+            $("#inputText").keydown(function(e){
+                console.log(`keydown: ${ e.key }`);
+            }).keypress(function(e){
+                console.log(`keypress: ${ e.key }`);
+            }).keyup(function(e){
+                console.log(`keyup: ${ e.key }`);
+            });
         });
     </script>
 
@@ -68,7 +84,17 @@
 
     <script>
         $(function(){
+            $("#memberId").keyup(function(){
+                const regExp = /^[a-z][a-z\d]{5,11}$/;
 
+                if(regExp.test($(this).val())) {
+                    $("#idCheck").text('사용 가능한 ID 형식입니다.')
+                    .css({ color:"green", "font-weight": "bolder" });
+                } else {
+                    $("#idCheck").text('사용 불가능한 ID 형식입니다.')
+                    .css({ color: 'red', 'font-weight': 'bolder' });
+                }
+            });
         });
     </script>
 
