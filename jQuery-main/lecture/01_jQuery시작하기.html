@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 1. 별도의 js 파일을 문서로 가져오기 -->
+    <!-- <script src="../resources/js/jquery-3.7.1.min.js"></script> -->
+    <!-- 2. CDN을 이용 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>jQuery 시작하기</h1>
+
+    <h3>jQuery란?</h3>
+    <p>
+        기존 복잡했던 클라이언트 측 HTML 스크립팅을 간소화 하기 위해 고안 된 
+        JavaScript 라이브러리로 적은 양의 코드로 빠르고, 풍부한 기능을 제공한다. 
+    </p>
+
+    <h3>jQuery 사용방법</h3>
+    <p>
+        - jQuery 공식 사이트 : https://jquery.com <br>
+        - jQuery 라이브러리 제공 페이지 : https://code.jquery.com <br>
+        1. jQuery 라이브러리 다운로드를 통한 연결 : js 파일을 다운로드 하여 파일 경로 지정<br>
+        2. CDN(Content Delivery Network)을 통한 연결 : 제공하는 주소를 이용하여 파일 경로 지정
+    </p>
+
+    <h3>jQuery 작성하기</h3>
+    <p>
+        문서가 로드 된 이후 jQuery를 실행하는 방법 (window.onload 속성과 같은 개념의 메소드) <br>
+        1) $(document).ready(function(){}); <br>
+        2) $(function(){}); <br>
+    </p>
+
+    <script>
+
+        $(document).ready(function(){
+            alert('hello jQuery~!');
+        })
+
+        $(function(){
+            $("*").css("color","red");
+        })
+
+    </script>
+
+</body>
+</html>

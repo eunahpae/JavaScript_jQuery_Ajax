@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .outer {
+            width : 200px;
+            height: 200px;
+            background-color: orange;
+            padding: 50px;
+        }
+
+        .inner {
+            width : 100%;
+            height: 100%;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>이벤트 연결 메소드</h1>
+
+    <h3>
+        mouseenter/mouseleave, mouseover/mouseout
+    </h3>
+
+    <div class="outer o1">
+        <div class="inner"></div>
+    </div>
+    <p id="output1"></p>
+
+    <div class="outer o2">
+        <div class="inner"></div>
+    </div>
+    <p id="output2"></p>
+
+    <script>
+        $(function(){
+            // 자식 요소 접근 시에는 이벤트 핸들링 하지 않음
+
+            // 자식 요소 접근 시에도 이벤트 핸들링 함
+
+        });
+    </script>
+
+    <h3>키보드 이벤트</h3>
+    <p>
+        keydown : 키보드가 눌려질 때, keypress : 글자가 입력 될 때(기능키 사용 불가),
+        keyup : 키보드가 떼어질 때
+    </p>
+    <input type="text" id="inputText">
+    <script>
+        $(function(){
+
+        });
+    </script>
+
+    <h3>동적으로 아이디 조건 확인</h3>
+    <p>
+        첫 글자는 반드시 영문 소문자이며 전체적으로는 영문 소문자와 숫자로만 구성
+        되어야 한다. 길이는 6~12 글자여야 한다. 
+    </p>
+    <label for="memberId">아이디 : </label>
+    <input type="text" name="memberId" id="memberId">
+    <span id="idCheck"></span>
+
+    <script>
+        $(function(){
+
+        });
+    </script>
+
+    <h3>입력 양식 이벤트</h3>
+    <div id="wrap">
+        <h3>회원가입</h3>
+        <form method="post" action="">
+            <table>
+                <tr>
+                    <td><label>이름</label></td>
+                    <td><input type="text" name="name" id="name" required></td>
+                    <td><span id="nameresult"></span></td>
+                </tr>
+                <tr>
+                    <td><label>아이디</label></td>
+                    <td><input type="text" name="userid" id="userid" required></td>
+                    <td><input type="button" value="중복확인"></td>
+                </tr>
+                <tr>
+                    <td><label>비밀번호</label></td>
+                    <td><input type="password" name="pwd1" id="pwd1" required></td>
+                    <td><span id="pwdresult"></span></td>
+                </tr>
+                <tr>
+                    <td><label>비밀번호확인</label></td>
+                    <td><input type="password" name="pwd2" id="pwd2" required></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="reset"> &nbsp; <input type="submit"></td>
+                    <td></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <script>
+        $(function(){
+            // 입력 양식 관련 이벤트 감지 테스트
+
+            // focusin, focusout : 해당 요소와 자식 요소가 포커스를 가지면 이벤트 발생.
+            // focus, blur는 버블링이 발생하지 않음
+
+            // 이름에 두글자 이상의 한글을 작성
+
+            // 입력 양식 제출 전 발생하는 submit 이벤트
+
+        });
+    </script>
+
+</body>
+</html>
