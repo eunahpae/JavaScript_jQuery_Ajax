@@ -135,14 +135,41 @@
     <script>
         $(function(){
             // 입력 양식 관련 이벤트 감지 테스트
+            $("#name").focus(function(){
+                console.log('FOCUS!');
+            }).blur(function(){
+                console.log('BLUR');
+            }).change(function(){
+                console.log('CHANGE');
+            }).select(function(){
+                console.log('SELECT!');
+            });
 
             // focusin, focusout : 해당 요소와 자식 요소가 포커스를 가지면 이벤트 발생.
             // focus, blur는 버블링이 발생하지 않음
+            $("td").focusin(function(){
+                console.log('FOCUSIN!');
+            }).focusout(function(){
+                console.log('FOCUSOUT');
+            });
 
             // 이름에 두글자 이상의 한글을 작성
+            $("#name").change(function(){
+                const regExp = /^[가-힣]{2,}$/;
+
+                if(!regExp.test($(this).val())) {
+                    $("#nameresult").text("한글로 두 글자 이상 입력하세요.").css("color", "red");
+                } else {
+                    $("#nameresult").text("");
+                }
+            });
 
             // 입력 양식 제출 전 발생하는 submit 이벤트
-
+            $("form").submit(function(){
+                if(!confirm('회원가입을 진행하시겠습니까?')) {
+                    return false;
+                }
+            });
         });
     </script>
 

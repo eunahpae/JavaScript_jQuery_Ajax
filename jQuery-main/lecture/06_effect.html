@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <style>
         .outer {
             width : 600px;
@@ -51,9 +52,12 @@
 
     <script>
         $(function(){
-
-            
-
+            $("#show").click(function(){
+                $("#pika").show(1000);
+            });
+            $("#hide").click(function(){
+                $("#pika").hide(1000);
+            });
         });
     </script>
 
@@ -64,9 +68,9 @@
 
     <script>
         $(function(){
-
-            
-
+            $("#toggle").click(function(){
+                $("#dog").toggle(3000);
+            });
         });
     </script>
 
@@ -94,10 +98,16 @@
 
     <script>
         $(function(){
+            $(".menu").click(function(){
+                if($(this).next("p").css("display") === 'none') {
+                    $("p.contents").slideUp();
+                    $(this).next("p").slideDown();
+                } else {
+                    $(this).next("p").slideUp();
+                }
 
-            
-
-
+                // $(this).next("p").slideToggle();
+            });
         });
     </script>
 
@@ -120,10 +130,25 @@
     <img id="flower" src="../resources/images/flower1.PNG">
 
     <script>
+        $("#fadeIn").click(function(){
+            $("#diningtable").fadeIn(2000);
+        });
 
+        $("#fadeOut").click(function(){
+            $("#diningtable").fadeOut(2000);
+        });
 
+        $("#fadeToggle").click(function(){
+            $("#diningtable").fadeToggle(2000, function(){
+                alert('토글 완료!');
+            });
+        });
 
+        $("#flower").hover(function(){
+            $("#flower").fadeTo(3000, 0.1);
+        }, function(){
+            $("#flower").fadeTo(3000, 1);
+        });
     </script>
-    
 </body>
 </html>
