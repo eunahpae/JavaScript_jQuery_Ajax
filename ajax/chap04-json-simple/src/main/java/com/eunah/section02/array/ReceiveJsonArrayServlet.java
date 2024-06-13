@@ -1,4 +1,4 @@
-package com.eunah.secsion02.array;
+package com.eunah.section02.array;
 
 import java.io.IOException;
 import java.io.PrintWriter;

@@ -40,16 +40,12 @@ public class Payment extends HttpServlet {
 			break;
 		}
 		
-		JSONObject jsonResponse = new JSONObject();
-		
+		JSONObject jsonResponse = new JSONObject();		
 		jsonResponse.put("cardName", cardName);
 		jsonResponse.put("cardNumber", cardNumber);
-		jsonResponse.put("totalPrice", totalPrice);
-		
-		
+		jsonResponse.put("totalPrice", totalPrice);	
 		response.setContentType("application/json");
 
-		// 응답으로 JSON 객체 전송
 		PrintWriter out = response.getWriter();
 		out.print(jsonResponse);
 	}
