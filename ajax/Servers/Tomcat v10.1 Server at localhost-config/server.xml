@@ -142,7 +142,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="chap01-jquery-ajax" path="/chap01" reloadable="true" source="org.eclipse.jst.jee.server:chap01-jquery-ajax"/><Context docBase="chap02-json-string" path="/chap02" reloadable="true" source="org.eclipse.jst.jee.server:chap02-json-string"/><Context docBase="chap03-object-receive" path="/chap03" reloadable="true" source="org.eclipse.jst.jee.server:chap03-object-receive"/><Context docBase="chap04-json-simple" path="/chap04" reloadable="true" source="org.eclipse.jst.jee.server:chap04-json-simple"/></Host>
+      <Context docBase="chap01-jquery-ajax" path="/chap01" reloadable="true" source="org.eclipse.jst.jee.server:chap01-jquery-ajax"/><Context docBase="chap02-json-string" path="/chap02" reloadable="true" source="org.eclipse.jst.jee.server:chap02-json-string"/><Context docBase="chap03-object-receive" path="/chap03" reloadable="true" source="org.eclipse.jst.jee.server:chap03-object-receive"/><Context docBase="chap04-json-simple" path="/chap04" reloadable="true" source="org.eclipse.jst.jee.server:chap04-json-simple"/><Context docBase="practice" path="/practice" reloadable="true" source="org.eclipse.jst.jee.server:practice"/></Host>
     </Engine>
   </Service>
 </Server>
